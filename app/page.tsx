@@ -25,17 +25,17 @@ export default function Home() {
 
   return (
     <div className="container my-20">
-      <h1 className="text-5xl font-bold text-center"> Farm Demo </h1>
+      <h1 className="text-4xl font-bold text-center md:text-5xl pb-4"> Farm Demo </h1>
       <Card>
         <Tabs defaultValue="InSemination" className="w-full ">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger
               value="InSemination"
-              className="text-2xl font-semibold"
+              className="text-xl md:text-2xl font-semibold"
             >
               InSemination
             </TabsTrigger>
-            <TabsTrigger value="Colostrum" className="text-2xl font-semibold">
+            <TabsTrigger value="Colostrum" className="text-xl md:text-2xl font-semibold">
               Colostrum
             </TabsTrigger>
           </TabsList>
@@ -43,11 +43,13 @@ export default function Home() {
             value="InSemination"
             className="text-center font-semibold p-10"
           >
-            {!time && !time2  ?<CardHeader className="text-2xl">
+            {!time && !time2  ?<CardHeader className="text-lg md:text-2xl">
             If the cow is heat, click button below to track insemination window.
-            </CardHeader>:<CardHeader className="text-2xl">
-              If The Insemination has completed then click the button
+            </CardHeader>:!time?<CardHeader className="text-lg md:text-2xl">
+            If The Insemination has completed then click the button
               below.
+            </CardHeader>:<CardHeader className="text-lg md:text-2xl">
+              {`Don't`} start Insemination until the coundown ends.
             </CardHeader>}
             {!time && !time2 ? (
               <Button
@@ -103,8 +105,9 @@ export default function Home() {
             )}
             {complete && !time && !time2? (
             <>
-              <CardHeader className="text-2xl">
-                Expected birth date is between{" ("}
+              <CardHeader className="text-lg md:text-2xl">
+                Expected birth date is between
+                <div>{" ("}
                 {String(
                   new Date(birth_date)
                 ).slice(0, 15)}{" "}
@@ -112,6 +115,7 @@ export default function Home() {
                 {String(
                   new Date(birth_date2)
                 ).slice(0, 15)}{")"}
+                  </div>
               </CardHeader>
             </>
              ) : (
