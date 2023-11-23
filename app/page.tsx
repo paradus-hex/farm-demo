@@ -19,7 +19,10 @@ export default function Home() {
   const first_4hrs = new Date(Date.now() + 4 * 1000);
   const secnd_12hrs = new Date(Date.now() + 12 * 1000);
   const colostrum = new Date(Date.now() + 10 * 1000);
-  const birth_date = new Date(Date.now());
+  const current = new Date(Date.now())
+  const birth_date = new Date(current.setDate(current.getDate() + 262));
+  const birth_date2 = new Date(current.setDate(current.getDate() + 5));
+
   return (
     <div className="container my-20">
       <h1 className="text-5xl font-bold text-center"> Farm Demo </h1>
@@ -41,8 +44,7 @@ export default function Home() {
             className="text-center font-semibold p-10"
           >
             {!time && !time2  ?<CardHeader className="text-2xl">
-              If The Cow is in heat start Insemination by clicking the button
-              below.
+            If the cow is heat, click button below to track insemination window.
             </CardHeader>:<CardHeader className="text-2xl">
               If The Insemination has completed then click the button
               below.
@@ -79,7 +81,7 @@ export default function Home() {
                   setTime2={setTime2}
                 />
                 <CardDescription className="text-lg">
-                  Please Inseminate between 16 hours
+                Please start insemination after the timer ends
                 </CardDescription>
               </>
             ) : (
@@ -93,7 +95,7 @@ export default function Home() {
                   setTime2={setTime2}
                 />
                 <CardDescription className="text-rose-600 text-lg">
-                  Please Inseminate before 12 hours
+                Please complete inseminate before timer ends
                 </CardDescription>
               </>
             ) : (
@@ -104,11 +106,11 @@ export default function Home() {
               <CardHeader className="text-2xl">
                 Estimated birth date is between{" ("}
                 {String(
-                  new Date(birth_date.setDate(birth_date.getDate() + 262))
+                  new Date(birth_date)
                 ).slice(0, 15)}{" "}
                 -{" "}
                 {String(
-                  new Date(birth_date.setDate(birth_date.getDate() + 262))
+                  new Date(birth_date2)
                 ).slice(0, 15)}{")"}
               </CardHeader>
             </>
