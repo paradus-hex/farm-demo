@@ -1,17 +1,13 @@
 "use client";
+import ColostrumTimer from "@/components/ColostrumTimer";
 import Timer from "@/components/Timer";
 import MyTimer2 from "@/components/Timer2";
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
 
@@ -21,7 +17,8 @@ export default function Home() {
   const [complete, setComplete] = useState(false);
   const first_4hrs = new Date(Date.now() + 4 * 1000);
   const secnd_12hrs = new Date(Date.now() + 12 * 1000);
-  const birth_date = new Date(Date.now())
+  const colostrum = new Date(Date.now() + 10 * 1000);
+  const birth_date = new Date(Date.now());
   return (
     <div className="container my-20">
       <h1 className="text-5xl font-bold text-center"> Farm Demo </h1>
@@ -42,18 +39,33 @@ export default function Home() {
             value="InSemination"
             className="text-center font-semibold p-10"
           >
-            <CardHeader className="text-2xl">
+            {!time && !time2  ?<CardHeader className="text-2xl">
               If The Cow is in heat start Insemination by clicking the button
               below.
-            </CardHeader>
+            </CardHeader>:<CardHeader className="text-2xl">
+              If The Insemination has completed then click the button
+              below.
+            </CardHeader>}
             {!time && !time2 ? (
-              <Button className="text-xl" onClick={() => setTime(true)}>
+              <Button
+                className="text-xl"
+                onClick={() => {
+                  setTime(true);
+                  setComplete(false);
+                }}
+              >
                 {" "}
                 Start Insemination
               </Button>
             ) : (
-
-              <Button className="text-xl" onClick={() => {setTime(false); setComplete(true)}}>
+              <Button
+                className="text-xl"
+                onClick={() => {
+                  setTime(false);
+                  setTime2(false);
+                  setComplete(true);
+                }}
+              >
                 {" "}
                 complete
               </Button>
@@ -86,19 +98,30 @@ export default function Home() {
             ) : (
               <div></div>
             )}
-            {complete ? (
-              <>
-                
-                <CardHeader className="text-2xl">
-              Estimated birth date is {String(birth_date.getDate())}
-            </CardHeader>
-              </>
-            ) : (
+            {complete && !time && !time2? (
+            <>
+              <CardHeader className="text-2xl">
+                Estimated birth date is between{" ("}
+                {String(
+                  new Date(birth_date.setDate(birth_date.getDate() + 262))
+                ).slice(0, 15)}{" "}
+                -{" "}
+                {String(
+                  new Date(birth_date.setDate(birth_date.getDate() + 262))
+                ).slice(0, 15)}{")"}
+              </CardHeader>
+            </>
+             ) : (
               <div></div>
-            )}
-
+            )} 
           </TabsContent>
-          <TabsContent value="Colostrum">colos</TabsContent>
+          <TabsContent value="Colostrum" className="text-center font-semibold p-10">
+          <CardHeader className="text-2xl">
+            Apply Colostrum within 4 hours
+            </CardHeader>
+            
+            <ColostrumTimer expiryTimestamp={colostrum}/>
+          </TabsContent>
         </Tabs>
       </Card>
     </div>

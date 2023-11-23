@@ -12,7 +12,6 @@ const MyTimer2 = ({ expiryTimestamp, setTime2,setTime }: any) => {
   return (
     <div className="text-center">
       <div className="text-[50px]">
-        <span>{String(days).padStart(2, "0")}</span>:
         <span>{String(hours).padStart(2, "0")}</span>:
         <span>{String(minutes).padStart(2, "0")}</span>:
         <span>{String(seconds).padStart(2, "0")}</span>

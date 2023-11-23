@@ -1,17 +1,16 @@
 "use client";
 import React from "react";
 import { useTimer } from "react-timer-hook";
+import { Button } from "./ui/button";
 
-const MyTimer = ({ expiryTimestamp, setTime,setTime2 }: any) => {
-  const { seconds, minutes, hours, days,isRunning } = useTimer({
+const ColostrumTimer = ({ expiryTimestamp }: any) => {
+  const { seconds, minutes, hours, start} = useTimer({
     expiryTimestamp,
-    onExpire: () => {
-      setTime(false);
-      setTime2(true);
-    },
+    autoStart:false
   });
   return (
     <div className="text-center">
+        <Button className="text-xl" onClick={start}>Apply Colostrum</Button>
       <div className="text-[50px]">
         <span>{String(hours).padStart(2, "0")}</span>:
         <span>{String(minutes).padStart(2, "0")}</span>:
@@ -21,4 +20,4 @@ const MyTimer = ({ expiryTimestamp, setTime,setTime2 }: any) => {
     </div>
   );
 };
-export default MyTimer;
+export default ColostrumTimer;
