@@ -20,7 +20,7 @@ export default function Home() {
   const secnd_12hrs = new Date(Date.now() + 12 * 1000);
   const colostrum = new Date(Date.now() + 10 * 1000);
   const current = new Date(Date.now())
-  const birth_date = new Date(current.setDate(current.getDate() + 275));
+  const birth_date = new Date(current.setDate(current.getDate() + 274));
   const birth_date2 = new Date(current.setDate(current.getDate() + 10));
 
   return (
@@ -60,7 +60,7 @@ export default function Home() {
                 {" "}
                 Start Insemination
               </Button>
-            ) : (
+            ) : !time? (
               <Button
                 className="text-xl"
                 onClick={() => {
@@ -72,7 +72,7 @@ export default function Home() {
                 {" "}
                 complete
               </Button>
-            )}
+            ):<div></div>}
             {time ? (
               <>
                 <Timer
@@ -95,7 +95,7 @@ export default function Home() {
                   setTime2={setTime2}
                 />
                 <CardDescription className="text-rose-600 text-lg">
-                Please complete inseminate before timer ends
+                Please complete insemination before timer ends
                 </CardDescription>
               </>
             ) : (

@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { useTimer } from "react-timer-hook";
-import { Button } from "./ui/button";
 
 const ColostrumTimer = ({ expiryTimestamp }: any) => {
   const { seconds, minutes, hours} = useTimer({
