@@ -15,6 +15,7 @@ export default function Home() {
   const [time, setTime] = useState(false);
   const [time2, setTime2] = useState(false);
   const [complete, setComplete] = useState(false);
+  const [colostrumTime, setColostrumTime] = useState(false)
   const first_4hrs = new Date(Date.now() + 4 * 1000);
   const secnd_12hrs = new Date(Date.now() + 12 * 1000);
   const colostrum = new Date(Date.now() + 10 * 1000);
@@ -119,8 +120,12 @@ export default function Home() {
           <CardHeader className="text-2xl">
             Apply Colostrum within 4 hours
             </CardHeader>
-            
+            <Button className="text-xl" onClick={()=>setColostrumTime(true)}>Apply Colostrum</Button>
+            {colostrumTime?
             <ColostrumTimer expiryTimestamp={colostrum}/>
+            :
+            <div></div>
+            }
           </TabsContent>
         </Tabs>
       </Card>
