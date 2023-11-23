@@ -20,8 +20,8 @@ export default function Home() {
   const secnd_12hrs = new Date(Date.now() + 12 * 1000);
   const colostrum = new Date(Date.now() + 10 * 1000);
   const current = new Date(Date.now())
-  const birth_date = new Date(current.setDate(current.getDate() + 262));
-  const birth_date2 = new Date(current.setDate(current.getDate() + 5));
+  const birth_date = new Date(current.setDate(current.getDate() + 275));
+  const birth_date2 = new Date(current.setDate(current.getDate() + 10));
 
   return (
     <div className="container my-20">
