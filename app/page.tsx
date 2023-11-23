@@ -48,8 +48,8 @@ export default function Home() {
             </CardHeader>:!time?<CardHeader className="text-lg md:text-2xl">
             If The Insemination has completed then click the button
               below.
-            </CardHeader>:<CardHeader className="text-lg md:text-2xl">
-              {`Don't`} start Insemination until the coundown ends.
+            </CardHeader>:<CardHeader className=" text-lg md:text-2xl">
+              {`Don't`} start Insemination until the countdown ends.
             </CardHeader>}
             {!time && !time2 ? (
               <Button
@@ -105,8 +105,8 @@ export default function Home() {
             )}
             {complete && !time && !time2? (
             <>
-              <CardHeader className="text-lg md:text-2xl">
-                Expected birth date is between
+              <div className="md:flex justify-center md:space-x-2 text-lg md:text-2xl py-8">
+                <div>Expected birth date is between</div>
                 <div>{" ("}
                 {String(
                   new Date(birth_date)
@@ -116,7 +116,7 @@ export default function Home() {
                   new Date(birth_date2)
                 ).slice(0, 15)}{")"}
                   </div>
-              </CardHeader>
+              </div>
             </>
              ) : (
               <div></div>
