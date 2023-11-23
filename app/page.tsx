@@ -104,7 +104,7 @@ export default function Home() {
             {complete && !time && !time2? (
             <>
               <CardHeader className="text-2xl">
-                Estimated birth date is between{" ("}
+                Expected birth date is between{" ("}
                 {String(
                   new Date(birth_date)
                 ).slice(0, 15)}{" "}
